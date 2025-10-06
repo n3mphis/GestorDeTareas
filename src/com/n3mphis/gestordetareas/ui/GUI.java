@@ -83,6 +83,7 @@ public class GUI {
 
     private void manejarEliminarTarea() {
         System.out.println("Ingrese el ID de la tarea a eliminar");
+        System.out.print("-> ");
         long idEliminar = sc.nextLong();
         sc.nextLine();
         boolean exito = gdt.eliminarTarea(idEliminar);
@@ -91,6 +92,21 @@ public class GUI {
             System.out.println("Tarea eliminada con exito!");
         } else {
             System.out.println("La tarea con ID " + idEliminar + " no existe.");
+        }
+    }
+
+    private void manejarMarcarCompleta() {
+        System.out.println("Ingrese el ID para marcar la tarea completada");
+        System.out.print("-> ");
+        long idMarcar = sc.nextLong();
+        sc.nextLine();
+
+        boolean exito = gdt.marcarTareaCompletada(idMarcar);
+
+        if (exito) {
+            System.out.println("Tarea marcada como Completada con éxito!");
+        } else {
+            System.out.println("Tarea con ID #" + idMarcar + " no pudo ser marcada como completa (ID incorrecto o ya estaba completa");
         }
     }
 
