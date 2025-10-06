@@ -8,8 +8,13 @@ import java.util.Scanner;
 
 public class GUI {
     private boolean continuar = true;
-    private Scanner sc = new Scanner(System.in);
-    private GestorDeTareas gdt = new GestorDeTareas();
+    private Scanner sc;
+    private GestorDeTareas gdt;
+
+    public GUI(GestorDeTareas gdt) {
+        this.gdt = gdt;
+        this.sc = new Scanner(System.in);
+    }
 
     public void iniciar() {
         while (continuar) {
@@ -58,6 +63,9 @@ public class GUI {
                 
                 6) Salir
                 """);
+
+        System.out.println("Ingrese su elección");
+        System.out.print("-> ");
     }
 
     private void manejarAgregarTarea() {

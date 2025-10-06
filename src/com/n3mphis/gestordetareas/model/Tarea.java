@@ -41,13 +41,13 @@ public class Tarea {
 
     @Override
     public boolean equals(Object o) {
-        if (o == null || getClass() != o.getClass()) return false;
+        if (this == o || getClass() != o.getClass()) return false;
         Tarea tarea = (Tarea) o;
-        return Objects.equals(descripcion, tarea.descripcion) && estado == tarea.estado && Objects.equals(id, tarea.id);
+        return Objects.equals(id, tarea.id);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(descripcion, estado, id);
+        return Objects.hash(id);
     }
 }
