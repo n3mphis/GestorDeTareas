@@ -18,8 +18,6 @@ public class GestorDeTareas {
         Tarea tarea = new Tarea(descripcion, idActual);
         tareas.put(idActual, tarea);
 
-        System.out.println("Tarea #" + idActual + " agregada correctamente.");
-
         return tarea;
     }
 

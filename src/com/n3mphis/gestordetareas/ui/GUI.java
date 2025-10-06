@@ -1,5 +1,6 @@
 package com.n3mphis.gestordetareas.ui;
 
+import com.n3mphis.gestordetareas.model.Tarea;
 import com.n3mphis.gestordetareas.service.GestorDeTareas;
 
 import java.util.Scanner;
@@ -19,18 +20,18 @@ public class GUI {
                     case 1:
                         manejarAgregarTarea();
                         break;
-                    case 2:
-                        manejarMostrarTareas();
-                        break;
-                    case 3:
-                        manejarEliminarTarea();
-                        break;
-                    case 4:
-                        manejarMarcarCompleta();
-                        break;
-                    case 5:
-                        manejarModificarDesc();
-                        break;;
+//                    case 2:
+//                        manejarMostrarTareas();
+//                        break;
+//                    case 3:
+//                        manejarEliminarTarea();
+//                        break;
+//                    case 4:
+//                        manejarMarcarCompleta();
+//                        break;
+//                    case 5:
+//                        manejarModificarDesc();
+//                        break;
                     case 6:
                         System.out.println("Muchas Gracias por usar el programa! Adiós");
                         continuar = false;
@@ -56,6 +57,16 @@ public class GUI {
                 
                 6) Salir
                 """);
+    }
+
+    public void manejarAgregarTarea() {
+        System.out.println("Ingrese la descripcion de su tarea");
+        System.out.print("-> ");
+        String desc = sc.nextLine();
+
+        Tarea tarea = gdt.agregarTarea(desc);
+
+        System.out.println("✅ Tarea agregada con éxito!" + "\nID asignado: " + tarea.getId());
     }
 
 }
