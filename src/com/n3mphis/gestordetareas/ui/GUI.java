@@ -30,9 +30,9 @@ public class GUI {
                     case 4:
                         manejarMarcarCompleta();
                         break;
-//                    case 5:
-//                        manejarModificarDesc();
-//                        break;
+                    case 5:
+                        manejarModificarDesc();
+                        break;
                     case 6:
                         System.out.println("Muchas Gracias por usar el programa! Adiós");
                         continuar = false;
@@ -107,6 +107,23 @@ public class GUI {
             System.out.println("Tarea marcada como Completada con éxito!");
         } else {
             System.out.println("Tarea con ID #" + idMarcar + " no pudo ser marcada como completa (ID incorrecto o ya estaba completa");
+        }
+    }
+
+    private void manejarModificarDesc() {
+        System.out.println("Ingrese el ID de la tarea a modificar");
+        System.out.print("-> ");
+        long id = sc.nextLong();
+        sc.nextLine();
+        System.out.println("Ingrese la nueva descripción");
+        System.out.print("-> ");
+        String nuevaDesc = sc.nextLine();
+        boolean exito = gdt.modificarDescripcion(id, nuevaDesc);
+
+        if (exito) {
+            System.out.println("La tarea con el ID #" + id + " ha cambiado de descripción");
+        } else {
+            System.out.println("La tarea con el ID #" + id + " no existe.");
         }
     }
 
