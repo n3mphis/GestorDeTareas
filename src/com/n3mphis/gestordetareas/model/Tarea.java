@@ -28,7 +28,15 @@ public class Tarea {
     public String toString() {
         return "Descripción de la tarea: " + descripcion +"\n" +
                 "Estado: " + estado + "\n" +
-                "ID: " + id;
+                "ID: " + id + "\n";
+    }
+
+    public void setEstado(EstadoTarea estado) {
+        this.estado = estado;
+    }
+
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
     }
 
     @Override
