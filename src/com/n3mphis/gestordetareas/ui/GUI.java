@@ -3,6 +3,7 @@ package com.n3mphis.gestordetareas.ui;
 import com.n3mphis.gestordetareas.model.Tarea;
 import com.n3mphis.gestordetareas.service.GestorDeTareas;
 
+import java.util.Collection;
 import java.util.Scanner;
 
 public class GUI {
@@ -20,15 +21,15 @@ public class GUI {
                     case 1:
                         manejarAgregarTarea();
                         break;
-//                    case 2:
-//                        manejarMostrarTareas();
-//                        break;
-//                    case 3:
-//                        manejarEliminarTarea();
-//                        break;
-//                    case 4:
-//                        manejarMarcarCompleta();
-//                        break;
+                    case 2:
+                        manejarMostrarTareas();
+                        break;
+                    case 3:
+                        manejarEliminarTarea();
+                        break;
+                    case 4:
+                        manejarMarcarCompleta();
+                        break;
 //                    case 5:
 //                        manejarModificarDesc();
 //                        break;
@@ -43,7 +44,7 @@ public class GUI {
         }
     }
 
-    public void menu() {
+    private void menu() {
         System.out.println("""
                 ******************************
                 Bienvenido al Gestor De Tareas
@@ -59,7 +60,7 @@ public class GUI {
                 """);
     }
 
-    public void manejarAgregarTarea() {
+    private void manejarAgregarTarea() {
         System.out.println("Ingrese la descripcion de su tarea");
         System.out.print("-> ");
         String desc = sc.nextLine();
@@ -67,6 +68,30 @@ public class GUI {
         Tarea tarea = gdt.agregarTarea(desc);
 
         System.out.println("✅ Tarea agregada con éxito!" + "\nID asignado: " + tarea.getId());
+    }
+
+    private void manejarMostrarTareas() {
+        Collection<Tarea> tareas = gdt.obtenerTodasLasTareas();
+        if (tareas.isEmpty()) {
+            System.out.println("No hay tareas agregadas!");
+            return;
+        }
+        for (Tarea tarea : tareas) {
+            System.out.println(tarea.toString());
+        }
+    }
+
+    private void manejarEliminarTarea() {
+        System.out.println("Ingrese el ID de la tarea a eliminar");
+        long idEliminar = sc.nextLong();
+        sc.nextLine();
+        boolean exito = gdt.eliminarTarea(idEliminar);
+
+        if (exito) {
+            System.out.println("Tarea eliminada con exito!");
+        } else {
+            System.out.println("La tarea con ID " + idEliminar + " no existe.");
+        }
     }
 
 }
