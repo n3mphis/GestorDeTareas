@@ -44,6 +44,7 @@ public class GUI {
                         break;
                 }
             } catch (Exception e) {
+                sc.nextLine();
                 System.out.println("Error de entrada! Por favor, ingrese un número");
             }
         }
