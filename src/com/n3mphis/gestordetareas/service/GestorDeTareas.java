@@ -39,12 +39,14 @@ public class GestorDeTareas {
         return false;
     }
 
-    public boolean modificarDescripcion(Long id, String descripcion) {
+    public void modificarDescripcion(Long id, String descripcion) {
         Tarea tarea = tareas.get(id);
         if (tarea != null) {
             tarea.setDescripcion(descripcion);
-            return true;
         }
-        return false;
+    }
+
+    public boolean existeTarea(Long id) {
+        return tareas.containsKey(id);
     }
 }

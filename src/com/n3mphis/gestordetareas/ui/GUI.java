@@ -8,8 +8,8 @@ import java.util.Scanner;
 
 public class GUI {
     private boolean continuar = true;
-    private Scanner sc;
-    private GestorDeTareas gdt;
+    private final Scanner sc;
+    private final GestorDeTareas gdt;
 
     public GUI(GestorDeTareas gdt) {
         this.gdt = gdt;
@@ -39,19 +39,20 @@ public class GUI {
                         manejarModificarDesc();
                         break;
                     case 6:
-                        System.out.println("Muchas Gracias por usar el programa! Adiós");
+                        System.out.println("Muchas Gracias por usar el programa! Adiós \uD83D\uDC4B");
                         continuar = false;
                         break;
                 }
             } catch (Exception e) {
                 sc.nextLine();
-                System.out.println("Error de entrada! Por favor, ingrese un número");
+                System.out.println("‼\uFE0F Error de entrada! Por favor, ingrese un número");
             }
         }
     }
 
     private void menu() {
         System.out.println("""
+                
                 ******************************
                 Bienvenido al Gestor De Tareas
                 ******************************
@@ -82,7 +83,7 @@ public class GUI {
     private void manejarMostrarTareas() {
         Collection<Tarea> tareas = gdt.obtenerTodasLasTareas();
         if (tareas.isEmpty()) {
-            System.out.println("No hay tareas agregadas!");
+            System.out.println("No hay tareas agregadas! \uD83E\uDEE4");
             return;
         }
         for (Tarea tarea : tareas) {
@@ -98,9 +99,9 @@ public class GUI {
         boolean exito = gdt.eliminarTarea(idEliminar);
 
         if (exito) {
-            System.out.println("Tarea eliminada con exito!");
+            System.out.println("✅ Tarea eliminada con exito!");
         } else {
-            System.out.println("La tarea con ID " + idEliminar + " no existe.");
+            System.out.println("❌ La tarea con ID #" + idEliminar + " no existe.");
         }
     }
 
@@ -113,9 +114,9 @@ public class GUI {
         boolean exito = gdt.marcarTareaCompletada(idMarcar);
 
         if (exito) {
-            System.out.println("Tarea marcada como Completada con éxito!");
+            System.out.println("✅ Tarea marcada como Completada con éxito!");
         } else {
-            System.out.println("Tarea con ID #" + idMarcar + " no pudo ser marcada como completa (ID incorrecto o ya estaba completa");
+            System.out.println("❌ Tarea con ID #" + idMarcar + " no pudo ser marcada como completa (ID incorrecto o ya estaba completa");
         }
     }
 
@@ -124,16 +125,18 @@ public class GUI {
         System.out.print("-> ");
         long id = sc.nextLong();
         sc.nextLine();
+
+        if (!gdt.existeTarea(id)) {
+            System.out.println("❌ Error! La tarea con ID #" + id + " no existe. Operación cancelada");
+            return;
+        }
         System.out.println("Ingrese la nueva descripción");
         System.out.print("-> ");
         String nuevaDesc = sc.nextLine();
-        boolean exito = gdt.modificarDescripcion(id, nuevaDesc);
 
-        if (exito) {
-            System.out.println("La tarea con el ID #" + id + " ha cambiado de descripción");
-        } else {
-            System.out.println("La tarea con el ID #" + id + " no existe.");
-        }
+        gdt.modificarDescripcion(id, nuevaDesc);
+
+        System.out.println("✅ La tarea con el ID #" + id + " ha cambiado de descripción");
     }
 
 }
