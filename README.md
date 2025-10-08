@@ -18,4 +18,4 @@ Java, CLI
 
 ## Estado del Proyecto
 
-🚧 Actualmente en desarrollo 
+🏁 Completado
